@@ -64,20 +64,38 @@ const Index = () => {
     },
   ];
 
-  const events = [
+  const teamMembers = [
     {
       id: 1,
-      title: "Встреча с фанатами",
-      date: "28 мая 2025",
-      location: "Москва",
-      description: "Автограф-сессия и фотографирование с фанатами",
+      name: "Алексей",
+      role: "Видеомонтажёр",
+      image:
+        "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?q=80&w=2634&auto=format&fit=crop",
+      description: "Отвечает за монтаж видео и визуальные эффекты",
     },
     {
       id: 2,
-      title: "Турнир по Minecraft",
-      date: "15 июня 2025",
-      location: "Онлайн",
-      description: "Соревнуйтесь с другими фанатами и выиграйте призы",
+      name: "Мария",
+      role: "Менеджер сообщества",
+      image:
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2787&auto=format&fit=crop",
+      description: "Поддерживает связь с фанатами и организует мероприятия",
+    },
+    {
+      id: 3,
+      name: "Дмитрий",
+      role: "Технический специалист",
+      image:
+        "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=2787&auto=format&fit=crop",
+      description: "Отвечает за техническую сторону стримов и записи",
+    },
+    {
+      id: 4,
+      name: "Екатерина",
+      role: "Дизайнер",
+      image:
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2888&auto=format&fit=crop",
+      description: "Создаёт графику для видео и социальных сетей",
     },
   ];
 
@@ -87,7 +105,12 @@ const Index = () => {
       <header className="bg-red-900 text-white py-4 sticky top-0 z-10 shadow-md">
         <div className="container mx-auto flex justify-between items-center px-4">
           <div className="flex items-center gap-2">
-            <Icon name="Zap" className="text-red-400" size={24} />
+            <Icon
+              name="Pepper"
+              fallback="Flame"
+              className="text-red-400"
+              size={24}
+            />
             <h1 className="text-xl font-bold">EdisonPTS</h1>
           </div>
           <nav className="hidden md:flex gap-6">
@@ -100,8 +123,8 @@ const Index = () => {
             <a href="#community" className="hover:text-red-300 transition">
               Сообщество
             </a>
-            <a href="#events" className="hover:text-red-300 transition">
-              События
+            <a href="#team" className="hover:text-red-300 transition">
+              Команда
             </a>
           </nav>
           <Button variant="ghost" size="icon" className="md:hidden">
@@ -276,45 +299,61 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Секция событий */}
-        <section id="events" className="py-16 bg-white">
+        {/* Секция команды */}
+        <section id="team" className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8 text-center text-red-900">
-              Предстоящие события
+              Команда EdisonPTS
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {events.map((event) => (
-                <Card key={event.id} className="border-l-4 border-l-red-600">
-                  <CardHeader>
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <CardTitle>{event.title}</CardTitle>
-                        <CardDescription>{event.description}</CardDescription>
-                      </div>
-                      <div className="bg-red-50 px-3 py-2 rounded-md text-center">
-                        <div className="font-bold text-red-600">
-                          {event.date.split(" ")[0]}
-                        </div>
-                        <div className="text-xs">
-                          {event.date.split(" ")[1]}
-                        </div>
-                      </div>
-                    </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {teamMembers.map((member) => (
+                <Card
+                  key={member.id}
+                  className="overflow-hidden border-red-200 hover:shadow-lg transition-shadow"
+                >
+                  <div className="aspect-square overflow-hidden">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-lg">{member.name}</CardTitle>
+                    <CardDescription className="font-medium text-red-600">
+                      {member.role}
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center gap-2 text-gray-500">
-                      <Icon name="MapPin" size={16} />
-                      <span>{event.location}</span>
-                    </div>
+                    <p className="text-sm text-gray-600">
+                      {member.description}
+                    </p>
                   </CardContent>
-                  <CardFooter>
-                    <Button
-                      variant="outline"
-                      className="w-full border-red-600 text-red-600 hover:bg-red-50"
-                    >
-                      Подробнее
-                    </Button>
+                  <CardFooter className="pt-0">
+                    <div className="flex gap-3">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="rounded-full p-0 w-8 h-8"
+                      >
+                        <Icon name="Instagram" size={16} />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="rounded-full p-0 w-8 h-8"
+                      >
+                        <Icon name="Twitter" size={16} />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="rounded-full p-0 w-8 h-8"
+                      >
+                        <Icon name="Linkedin" size={16} />
+                      </Button>
+                    </div>
                   </CardFooter>
                 </Card>
               ))}
@@ -359,7 +398,12 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center gap-2 mb-4 md:mb-0">
-              <Icon name="Zap" className="text-red-400" size={24} />
+              <Icon
+                name="Pepper"
+                fallback="Flame"
+                className="text-red-400"
+                size={24}
+              />
               <h1 className="text-xl font-bold">EdisonPTS</h1>
             </div>
             <div className="flex gap-4">
